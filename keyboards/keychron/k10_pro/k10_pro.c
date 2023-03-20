@@ -36,6 +36,8 @@ typedef struct PACKED {
     uint8_t keycode[3];
 } key_combination_t;
 
+bool            g_layer_led_on = false;
+
 static uint32_t power_on_indicator_timer_buffer;
 static uint32_t siri_timer_buffer = 0;
 static uint8_t  mac_keycode[4]    = {KC_LOPT, KC_ROPT, KC_LCMD, KC_RCMD};
@@ -75,6 +77,10 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
     static uint8_t host_idx = 0;
 
     switch (keycode) {
+        case TG(1):
+        case TG(3):
+            g_layer_led_on = !(IS_LAYER_ON(1) || IS_LAYER_ON(3));
+            return true;
         case KC_LOPTN:
         case KC_ROPTN:
         case KC_LCMMD:

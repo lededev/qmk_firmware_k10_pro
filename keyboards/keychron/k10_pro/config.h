@@ -36,7 +36,7 @@
 /* Set 0 if debouncing isn't needed */
 #define DEBOUNCE 5
 
-/* DIP switch for Mac/win OS switch */
+/* DIP switch for Office/Game switch */
 #define DIP_SWITCH_PINS \
     { A8 }
 
@@ -111,4 +111,5 @@
 
 /* Tap-Hold Configs */
 #define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
-
+#define TAPPING_TERM_PER_KEY
+#define TAPPING_TERM 200
