@@ -35,6 +35,7 @@
 /* Indication led */
 #    define CAPS_LOCK_INDEX 62
 #    define NUM_LOCK_INDEX 37
+#    define SCROLL_LOCK_INDEX 14
 
 #    ifdef VIA_ENABLE
 #        define VIA_QMK_RGBLIGHT_ENABLE

@@ -85,7 +85,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                 unregister_code(mac_keycode[keycode - KC_LOPTN]);
             }
             return false; // Skip all further processing of this key)
-        case KC_MCTL:
+        case KC_KMCTL:
             /* Mission Control */
             host_consumer_send(record->event.pressed ? 0x29F : 0);
             return false; // Skip all further processing of this key

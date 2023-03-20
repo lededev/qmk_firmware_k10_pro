@@ -209,7 +209,7 @@ static inline void lpm_wakeup(void) {
         /* Remove USB isolation.*/
         // PWR->CR2 |= PWR_CR2_USV; /* PWR_CR2_USV is available on STM32L4x2xx and STM32L4x3xx devices only. */
         usb_power_connect();
-        usb_start(&USBD1);
+        restart_usb_driver(&USBD1);
     }
 #    endif
 

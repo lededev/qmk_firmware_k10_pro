@@ -108,3 +108,7 @@
 /* Factory test keys */
 #define FN_KEY1 MO(1)
 #define FN_KEY2 MO(3)
+
+/* Tap-Hold Configs */
+#define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
+

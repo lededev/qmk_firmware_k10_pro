@@ -180,7 +180,7 @@ void usb_remote_wakeup(void) {
             /* Remote wakeup */
             if (suspend_wakeup_condition()) {
                 usbWakeupHost(&USB_DRIVER);
-                usb_wakeup(&USB_DRIVER);
+                restart_usb_driver(&USB_DRIVER);
             }
         }
         /* Woken up */

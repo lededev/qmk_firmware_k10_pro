@@ -26,12 +26,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define IS_LED_ON(leds, led_name) ((leds) & (1 << (led_name)))
 #define IS_LED_OFF(leds, led_name) (~(leds) & (1 << (led_name)))
 
+#define IS_HOST_LED_ON(led_name) IS_LED_ON(host_keyboard_leds(), led_name)
+#define IS_HOST_LED_OFF(led_name) IS_LED_OFF(host_keyboard_leds(), led_name)
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 extern uint8_t keyboard_idle;
 extern uint8_t keyboard_protocol;
+extern uint8_t bluetooth_report_protocol;
 
 /* host driver */
 void           host_set_driver(host_driver_t *driver);
