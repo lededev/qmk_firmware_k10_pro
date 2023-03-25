@@ -34,8 +34,8 @@ enum {
   TD_CAP_FNO,
   TD_CAP_FNG,
   TD_DEF_L4,
-  TD_GRV_L4,
-  TD_ESC_L4,
+  TD_GRV_L5,
+  TD_ESC_L1,
   TD_SLS_WDS,
   TD_PST_WDP,
   TD_F1_WDS,
@@ -84,8 +84,8 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_CAP_FNO] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ql_finished, ql_reset),
   [TD_CAP_FNG] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ql_finished, ql_reset),
   [TD_DEF_L4] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ql_finished, ql_reset),
-  [TD_GRV_L4] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ql_finished, ql_reset),
-  [TD_ESC_L4] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ql_finished, ql_reset),
+  [TD_GRV_L5] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ql_finished, ql_reset),
+  [TD_ESC_L1] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ql_finished, ql_reset),
   [TD_SLS_WDS] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ql_finished, ql_reset),
   [TD_PST_WDP] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ql_finished, ql_reset),
   [TD_F1_WDS] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ql_finished, ql_reset),
@@ -98,8 +98,8 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define TDCAPFO TD(TD_CAP_FNO)
 #define TDCAPFG TD(TD_CAP_FNG)
 #define TDETGL4 TD(TD_DEF_L4)
-#define TDGRVL4 TD(TD_GRV_L4)
-#define TDESCL4 TD(TD_ESC_L4)
+#define TDGRVL5 TD(TD_GRV_L5)
+#define TDESCL1 TD(TD_ESC_L1)
 #define TDSLSWS TD(TD_SLS_WDS)
 #define TDPSTWP TD(TD_PST_WDP)
 #define TDF1WDS TD(TD_F1_WDS)
@@ -111,7 +111,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     case LT(OFFICE_FN, KC_APP):
         return 160;
     case TDETGL4:
-        return 260;
+        return 195;
     case LT(L4, KC_ESC):
         return 2000;
     case TDNUMEQ:
@@ -120,11 +120,11 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         return 195;
     case TDCAPFO:
     case TDCAPFG:
-        return 250;
-    case TDGRVL4:
-        return 260;
-    case TDESCL4:
-        return 260;
+        return 195;
+    case TDGRVL5:
+        return 195;
+    case TDESCL1:
+        return 195;
     case TDSLSWS:
     case TDPSTWP:
     case TDF1WDS:
@@ -139,8 +139,8 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [OFFICE_BASE] = LAYOUT_ansi_108(
-        TDESCL4,         TDF1WDS,  TDF2WDP,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,      KC_F10,  KC_F11,     KC_F12,   KC_PSCR,  KC_SCRL,  KC_PAUS,  KC_MUTE,  KC_VOLD,  KC_VOLU,  TDETGL4,
-        TDGRVL4,  KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,     KC_BSPC,  KC_INS,   KC_HOME,  KC_PGUP,  TDNUMEQ,  TDSLSWS,  TDPSTWP,  TDMNSBK,
+        TDESCL1,         TDF1WDS,  TDF2WDP,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,      KC_F10,  KC_F11,     KC_F12,   KC_PSCR,  KC_SCRL,  KC_PAUS,  KC_MUTE,  KC_VOLD,  KC_VOLU,  TDETGL4,
+        TDGRVL5,  KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,     KC_BSPC,  KC_INS,   KC_HOME,  KC_PGUP,  TDNUMEQ,  TDSLSWS,  TDPSTWP,  TDMNSBK,
          KC_TAB,  KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,    KC_BSLS,  KC_DEL,   KC_END,   KC_PGDN,  KC_P7,    KC_P8,    KC_P9,    KC_PPLS,
         TDCAPFO,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,LT(L4,KC_SCLN),KC_QUOT,              KC_ENT,                                 KC_P4,    KC_P5,    KC_P6,
         KC_LSFT,            KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,              KC_RSFT,            KC_UP,              KC_P1,    KC_P2,    KC_P3,    KC_PENT,
@@ -151,7 +151,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         RGB_TOG,  _______,  KC_PGUP,  KC_UP,    KC_PGDN,  _______,  _______,  KC_PGUP,  KC_UP,    KC_PGDN,  _______,  _______,  _______,    _______,  RGB_VAD,  RGB_HUD,  RGB_SAD,  KC_MS_WH_UP,KC_MS_UP,KC_MS_WH_DOWN,  _______,
         _______,  KC_ENT,   KC_LEFT,  KC_DOWN,  KC_RGHT,  KC_BSPC,  KC_BSPC,  KC_LEFT,  KC_DOWN,  KC_RGHT,  _______,  _______,              _______,                                KC_MS_LEFT,KC_MS_BTN1,KC_MS_RIGHT,
         _______,             KC_ESC,  KC_HOME,   KC_DEL,   KC_END,  BAT_LVL,   KC_ESC,  KC_HOME,  KC_DEL,    KC_END,  _______,              _______,            _______,            KC_MS_WH_LEFT,KC_MS_DOWN,KC_MS_WH_RIGHT,  _______,
-        _______,  _______,  _______,                                _______,                                _______,  _______,  _______,    _______,  _______,  _______,  _______,  KC_MS_BTN2,            KC_MS_BTN3   ),
+        _______,  _______,  _______,                                 KC_SPC,                                _______,  _______,  _______,    _______,  _______,  _______,  _______,  KC_MS_BTN2,            KC_MS_BTN3   ),
     [GAME_BASE] = LAYOUT_ansi_108(
         KC_ESC,          TDF1WDS,  TDF2WDP,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,      KC_F10,  KC_F11,     KC_F12,   KC_PSCR,  KC_SCRL,  KC_PAUS,  KC_MUTE,  KC_VOLD,  KC_VOLU,  TDETGL4,
         KC_GRV,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,     KC_BSPC,  KC_INS,   KC_HOME,  KC_PGUP,  TDNUMEQ,  TDSLSWS,  TDPSTWP,  TDMNSBK,
@@ -172,14 +172,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,  KC_PSLS,    KC_P4,    KC_P5,    KC_P6,  KC_PMNS,  KC_PSLS,    KC_P4,    KC_P5,    KC_P6,  _______,  _______,  _______,    _______,  RGB_VAD,  RGB_HUD,  RGB_SAD,  KC_MS_WH_UP,KC_MS_UP,KC_MS_WH_DOWN,  _______,
         _______,  KC_PENT,    KC_P1,    KC_P2,    KC_P3,  KC_PPLS,  KC_BSPC,    KC_P1,    KC_P2,    KC_P3,  _______,  _______,              _______,                                KC_MS_LEFT,KC_MS_BTN1,KC_MS_RIGHT,
         _______,             KC_ESC,    KC_P0,  KC_PDOT,   KC_EQL,  _______,   KC_ESC,    KC_P0,  _______,  _______,  _______,              _______,            _______,             KC_MS_WH_LEFT,KC_MS_DOWN,KC_MS_WH_RIGHT,  _______,
-        _______,  _______,  _______,                                _______,                               _______,  _______,   _______,    _______,  _______,  _______,  _______,  KC_MS_BTN2,            KC_MS_BTN3   ),
+        _______,  _______,  _______,                                 KC_SPC,                               _______,  _______,   _______,    _______,  _______,  _______,  _______,  KC_MS_BTN2,            KC_MS_BTN3   ),
     [L5] = LAYOUT_ansi_108(
-        _______,            _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    _______, _______,  _______,  _______,  _______,  _______,  _______,  _______,
-        _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    _______, _______,  _______,  _______,  _______,  _______,  _______,  _______,
-        _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    _______, _______,  _______,  _______,  _______,  _______,  _______,  _______,
-        _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,              _______,                               _______,  _______,  _______,
-        _______,            _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,              _______,           _______,            _______,  _______,  _______,  _______,
-        _______,  _______,  _______,                                _______,                                _______,  _______,  _______,    _______, _______,  _______, _______,  _______,             _______),
+        KC_ESC,          TDF1WDS,  TDF2WDP,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,      KC_F10,  KC_F11,     KC_F12,   KC_PSCR,  KC_SCRL,  KC_PAUS,  KC_MUTE,  KC_VOLD,  KC_VOLU,  TG(L5),
+        TDGRVL5,  KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,     KC_BSPC,  KC_INS,   KC_HOME,  KC_PGUP,  TDNUMEQ,  TDSLSWS,  TDPSTWP,  TDMNSBK,
+        KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,    KC_BSLS,  KC_DEL,   KC_END,   KC_PGDN,  KC_P7,    KC_P8,    KC_P9,    KC_PPLS,
+        KC_CAPS,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,              KC_ENT,                                 KC_P4,    KC_P5,    KC_P6,
+        KC_LSFT,            KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,              KC_RSFT,            KC_UP,              KC_P1,    KC_P2,    KC_P3,    KC_PENT,
+        KC_LCTL,  KC_LWIN,  KC_LALT,                                KC_SPC,                                 KC_RALT,  KC_RWIN,   KC_APP,    KC_RCTL,  KC_LEFT,  KC_DOWN,  KC_RGHT,  KC_P0,              KC_PDOT         ),
 /*    [L6] = LAYOUT_ansi_108(
         _______,            _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    _______, _______,  _______,  _______,  _______,  _______,  _______,  _______,
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    _______, _______,  _______,  _______,  _______,  _______,  _______,  _______,
@@ -239,6 +239,7 @@ static tap ql_tap_state = {
 
 extern bool g_layer1_led_on;
 extern bool g_layer4_led_on;
+extern bool g_layer5_led_on;
 
 void updateLED1(bool b) {
     g_layer1_led_on = b;
@@ -252,6 +253,12 @@ void updateLED4(bool b) {
     led_update_user(led_state);
 }
 
+void updateLED5(bool b) {
+    g_layer5_led_on = b;
+    led_t led_state = {};
+    led_update_user(led_state);
+}
+
 // Functions that control what our tap dance key does
 void ql_finished(qk_tap_dance_state_t *state, void *user_data) {
     int tkeycode = TAP_DANCE_KEYCODE(state);
@@ -259,11 +266,11 @@ void ql_finished(qk_tap_dance_state_t *state, void *user_data) {
     int Fn = GAME_FN;
     switch(tkeycode) {
         case TDETGL4:
-        case TDGRVL4:
-        case TDESCL4:
+        case TDGRVL5:
+        case TDESCL1:
             switch (ql_tap_state.state) {
                 case SINGLE_TAP:
-                    if(tkeycode == TDGRVL4)
+                    if(tkeycode == TDGRVL5)
                         tap_code(KC_GRV);
                     else
                         tap_code(KC_ESC);
@@ -274,11 +281,11 @@ void ql_finished(qk_tap_dance_state_t *state, void *user_data) {
                         register_code(KC_LCTL);
                         register_code(KC_LALT);
                         register_code(KC_N);
-                    } else if(tkeycode == TDGRVL4) {
+                    } else if(tkeycode == TDGRVL5) {
                         register_code(KC_LSFT);
                         register_code(KC_LALT);
                         register_code(KC_Q);
-                    } else if(tkeycode == TDESCL4) {
+                    } else if(tkeycode == TDESCL1) {
                         register_code(KC_LSFT);
                         register_code(KC_LALT);
                         register_code(KC_W);
@@ -286,20 +293,46 @@ void ql_finished(qk_tap_dance_state_t *state, void *user_data) {
                     break;
                 case TAP_HOLD:
                     // temporal layer changell
-                    layer_on(L4);
-                    updateLED4(true);
+                    if (tkeycode == TDGRVL5) {
+                        layer_on(L5);
+                        updateLED5(true);
+                    } else if (tkeycode == TDESCL1) {
+                        layer_on(OFFICE_FN);
+                        updateLED1(true);
+                    } else {
+                        layer_on(L4);
+                        updateLED4(true);
+                    }
                     break;
                 case TRIPLE_TAP:
                     // toggle layer
                     // Check to see if the layer is already set
-                    if (layer_state_is(L4)) {
-                        // If already set, then switch it off
-                        layer_off(L4);
-                        updateLED4(false);
+                    if (tkeycode == TDGRVL5) {
+                        if (layer_state_is(L5)) {
+                            // If already set, then switch it off
+                            layer_off(L5);
+                            updateLED5(false);
+                        } else {
+                            // If not already set, then switch the layer on
+                            layer_on(L5);
+                            updateLED5(true);
+                        }
+                    } else if (tkeycode == TDESCL1) {
+                        if (layer_state_is(OFFICE_FN)) {
+                            layer_off(OFFICE_FN);
+                            updateLED1(false);
+                        } else {
+                            layer_on(OFFICE_FN);
+                            updateLED1(true);
+                        }
                     } else {
-                        // If not already set, then switch the layer on
-                        layer_on(L4);
-                        updateLED4(true);
+                        if (layer_state_is(L4)) {
+                            layer_off(L4);
+                            updateLED4(false);
+                        } else {
+                            layer_on(L4);
+                            updateLED4(true);
+                        }
                     }
                     break;
             }
@@ -381,8 +414,8 @@ void ql_reset(qk_tap_dance_state_t *state, void *user_data) {
     int tkeycode = TAP_DANCE_KEYCODE(state);
     switch(tkeycode) {
         case TDETGL4:
-        case TDGRVL4:
-        case TDESCL4:
+        case TDGRVL5:
+        case TDESCL1:
             switch (ql_tap_state.state) {
                 case SINGLE_TAP:
                     break;
@@ -391,11 +424,11 @@ void ql_reset(qk_tap_dance_state_t *state, void *user_data) {
                         unregister_code(KC_LCTL);
                         unregister_code(KC_LALT);
                         unregister_code(KC_N);
-                    } else if (tkeycode == TDGRVL4){
+                    } else if (tkeycode == TDGRVL5){
                         unregister_code(KC_LSFT);
                         unregister_code(KC_LALT);
                         unregister_code(KC_Q);
-                    } else if (tkeycode == TDESCL4){
+                    } else if (tkeycode == TDESCL1){
                         unregister_code(KC_LSFT);
                         unregister_code(KC_LALT);
                         unregister_code(KC_W);
@@ -403,8 +436,16 @@ void ql_reset(qk_tap_dance_state_t *state, void *user_data) {
                     break;
             // If the key was held down and now is released then switch off the layer
                 case TAP_HOLD:
-                    layer_off(L4);
-                    updateLED4(false);
+                    if (tkeycode == TDGRVL5) {
+                        layer_off(L5);
+                        updateLED5(false);
+                    } else if (tkeycode == TDESCL1) {
+                        layer_off(OFFICE_FN);
+                        updateLED1(false);
+                    } else {
+                        layer_off(L4);
+                        updateLED4(false);
+                    }
                     break;
             }
             break;

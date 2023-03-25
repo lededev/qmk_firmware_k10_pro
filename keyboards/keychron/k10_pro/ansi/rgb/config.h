@@ -38,6 +38,7 @@
 #    define SCROLL_LOCK_INDEX 14
 #    define TAGGLE_LAYER1_INDEX 0
 #    define TAGGLE_LAYER4_INDEX 19
+#    define TAGGLE_LAYER5_INDEX 20
 
 #    ifdef VIA_ENABLE
 #        define VIA_QMK_RGBLIGHT_ENABLE

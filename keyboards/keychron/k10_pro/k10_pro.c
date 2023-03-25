@@ -36,8 +36,9 @@ typedef struct PACKED {
     uint8_t keycode[3];
 } key_combination_t;
 
-bool            g_layer4_led_on = false;
 bool            g_layer1_led_on = false;
+bool            g_layer4_led_on = false;
+bool            g_layer5_led_on = false;
 
 static uint32_t power_on_indicator_timer_buffer;
 static uint32_t siri_timer_buffer = 0;
@@ -74,6 +75,7 @@ bool dip_switch_update_kb(uint8_t index, bool active) {
 layer_state_t layer_state_set_user(layer_state_t state) {
     g_layer1_led_on = layer_state_cmp(state, 1) || layer_state_cmp(state, 3);
     g_layer4_led_on = layer_state_cmp(state, 4);
+    g_layer5_led_on = layer_state_cmp(state, 5);
     return state;
 }
 
@@ -85,17 +87,6 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
     static uint8_t host_idx = 0;
 
     switch (keycode) {
-        case LT(4,KC_ESC):
-        case TG(4):
-//            g_layer4_led_on = !IS_LAYER_ON(4);
-            return true;
-        case TD(1):
-            /*qk_tap_dance_action_t * action = &tap_dance_actions[TD_INDEX(keycode)];
-            if (!record->event.pressed && action->state.count && !action->state.finished)
-            {
-                g_layer4_led_on = !IS_LAYER_ON(4);
-            }*/
-            return true;
         case KC_LOPTN:
         case KC_ROPTN:
         case KC_LCMMD:
