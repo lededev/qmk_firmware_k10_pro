@@ -108,8 +108,8 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case LT(L4, KC_A):
-        return 260;
+    case LT(OFFICE_FN, KC_APP):
+        return 160;
     case TDETGL4:
         return 260;
     case LT(L4, KC_ESC):
@@ -169,9 +169,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [L4] = LAYOUT_ansi_108(
         _______,            _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    _______, RGB_TOG, RGB_RMOD, RGB_MOD,  KC_MPLY,  KC_MPRV,  KC_MNXT,  _______,
         _______,  _______,    KC_P7,    KC_P8,    KC_P9,  KC_PAST,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    _______,  RGB_VAI,  RGB_HUI,  RGB_SAI,  KC_ESC,  TDSLSWS,  TDPSTWP,  KC_BSPC,
-        _______,  _______,    KC_P4,    KC_P5,    KC_P6,  KC_PMNS,  KC_PSLS,    KC_P4,    KC_P5,    KC_P6,  _______,  _______,  _______,    _______,  RGB_VAD,  RGB_HUD,  RGB_SAD,  KC_MS_WH_UP,KC_MS_UP,KC_MS_WH_DOWN,  _______,
-        _______,  _______,    KC_P1,    KC_P2,    KC_P3,  KC_PPLS,  KC_BSPC,    KC_P1,    KC_P2,    KC_P3,  _______,  _______,              _______,                                KC_MS_LEFT,KC_MS_BTN1,KC_MS_RIGHT,
-        _______,             KC_ESC,    KC_P0,  KC_PDOT,   KC_EQL,  KC_PENT,   KC_ESC,    KC_P0,  _______,  _______,  _______,              _______,            _______,             KC_MS_WH_LEFT,KC_MS_DOWN,KC_MS_WH_RIGHT,  _______,
+        _______,  KC_PSLS,    KC_P4,    KC_P5,    KC_P6,  KC_PMNS,  KC_PSLS,    KC_P4,    KC_P5,    KC_P6,  _______,  _______,  _______,    _______,  RGB_VAD,  RGB_HUD,  RGB_SAD,  KC_MS_WH_UP,KC_MS_UP,KC_MS_WH_DOWN,  _______,
+        _______,  KC_PENT,    KC_P1,    KC_P2,    KC_P3,  KC_PPLS,  KC_BSPC,    KC_P1,    KC_P2,    KC_P3,  _______,  _______,              _______,                                KC_MS_LEFT,KC_MS_BTN1,KC_MS_RIGHT,
+        _______,             KC_ESC,    KC_P0,  KC_PDOT,   KC_EQL,  _______,   KC_ESC,    KC_P0,  _______,  _______,  _______,              _______,            _______,             KC_MS_WH_LEFT,KC_MS_DOWN,KC_MS_WH_RIGHT,  _______,
         _______,  _______,  _______,                                _______,                               _______,  _______,   _______,    _______,  _______,  _______,  _______,  KC_MS_BTN2,            KC_MS_BTN3   ),
     [L5] = LAYOUT_ansi_108(
         _______,            _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    _______, _______,  _______,  _______,  _______,  _______,  _______,  _______,
