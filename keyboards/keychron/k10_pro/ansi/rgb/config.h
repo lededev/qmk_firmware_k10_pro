@@ -36,7 +36,8 @@
 #    define CAPS_LOCK_INDEX 62
 #    define NUM_LOCK_INDEX 37
 #    define SCROLL_LOCK_INDEX 14
-#    define TAGGLE_LAYER_INDEX 19
+#    define TAGGLE_LAYER1_INDEX 0
+#    define TAGGLE_LAYER4_INDEX 19
 
 #    ifdef VIA_ENABLE
 #        define VIA_QMK_RGBLIGHT_ENABLE

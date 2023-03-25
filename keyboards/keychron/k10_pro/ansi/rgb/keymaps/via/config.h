@@ -1,4 +1,4 @@
-/* Copyright 2019 Nick Brassel (tzarc)
+/* Copyright 2020 Vinam Arora <vinam@posteo.de>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,5 @@
 
 #pragma once
 
-#include "eeprom.h"
-
-uint16_t eeprom_driver_init(void);
-void eeprom_driver_erase(void);
+//#define DYNAMIC_KEYMAP_LAYER_COUNT 7
+#define DYNAMIC_KEYMAP_LAYER_COUNT 6

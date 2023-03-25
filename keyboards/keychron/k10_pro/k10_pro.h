@@ -24,7 +24,7 @@
 #define ___ KC_NO
 
 #ifdef VIA_ENABLE
-#    define USER_START USER00
+#    define USER_START QK_USER
 #else
 #    define USER_START SAFE_RANGE
 #endif
@@ -41,6 +41,7 @@ enum {
     KC_FILE,
     KC_SNAP,
     KC_CTANA,
+    KC_NOTE3,
     KC_SIRI,
 #ifdef KC_BLUETOOTH_ENABLE
     BT_HST1,

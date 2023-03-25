@@ -17,7 +17,7 @@
  */
 
 #include <hal.h>
-#include "legacy_flash_ops.h"
+#include "flash_stm32.h"
 
 #if defined(STM32F1XX)
 #    define FLASH_SR_WRPERR FLASH_SR_WRPRTERR
@@ -137,6 +137,9 @@ FLASH_Status FLASH_ErasePage(uint32_t Page_Address) {
 #if defined(FLASH_CR_SNB)
         FLASH->CR &= ~FLASH_CR_SNB;
         FLASH->CR |= FLASH_CR_SER | (ADDR2PAGE(Page_Address) << FLASH_CR_SNB_Pos);
+#elif defined(FLASH_CR_PNB)
+        FLASH->CR &= ~FLASH_CR_PNB;
+        FLASH->CR |= FLASH_CR_PER | (ADDR2PAGE(Page_Address) << FLASH_CR_PNB_Pos);
 #else
         FLASH->CR |= FLASH_CR_PER;
         FLASH->AR = Page_Address;
@@ -149,6 +152,8 @@ FLASH_Status FLASH_ErasePage(uint32_t Page_Address) {
             /* if the erase operation is completed, disable the configured Bits */
 #if defined(FLASH_CR_SNB)
             FLASH->CR &= ~(FLASH_CR_SER | FLASH_CR_SNB);
+#elif defined(FLASH_CR_PNB)
+            FLASH->CR &= ~(FLASH_CR_PER | FLASH_CR_PNB);
 #else
             FLASH->CR &= ~FLASH_CR_PER;
 #endif

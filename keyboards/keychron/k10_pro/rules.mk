@@ -19,6 +19,8 @@ NKRO_ENABLE = yes           # USB Nkey Rollover
 DIP_SWITCH_ENABLE = yes
 RAW_ENABLE = yes
 
+TAP_DANCE_ENABLE = yes      # Numlk as =
+
 # Enter lower-power sleep mode when on the ChibiOS idle thread
 OPT_DEFS += -DCORTEX_ENABLE_WFI_IDLE=TRUE
 OPT_DEFS += -DNO_USB_STARTUP_CHECK -DENABLE_FACTORY_TEST

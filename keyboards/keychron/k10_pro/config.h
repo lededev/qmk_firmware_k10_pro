@@ -102,14 +102,16 @@
 #endif
 
 /* Emulated EEPROM configuration */
+#define FEE_PAGE_SIZE 0x1000 // Page size = 4KByte
 #define FEE_DENSITY_BYTES FEE_PAGE_SIZE
-#define DYNAMIC_KEYMAP_EEPROM_MAX_ADDR 2047
+#define DYNAMIC_KEYMAP_EEPROM_MAX_ADDR 4095
 
 /* Factory test keys */
 #define FN_KEY1 MO(1)
 #define FN_KEY2 MO(3)
 
-/* Tap-Hold Configs */
-#define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
-#define TAPPING_TERM_PER_KEY
 #define TAPPING_TERM 200
+
+#define NEED_MORE_RGB_MATRIX_EFFECT
+
+#define NO_ACTION_ONESHOT

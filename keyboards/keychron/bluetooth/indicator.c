@@ -51,7 +51,8 @@ enum {
     BACKLIGHT_ON_UNCONNECTED = 0x02,
 };
 
-extern bool            g_layer_led_on;
+extern bool            g_layer1_led_on;
+extern bool            g_layer4_led_on;
 
 static indicator_config_t pairing_config      = INDICATOR_CONFIG_PARING;
 static indicator_config_t connected_config    = INDICATOR_CONFIG_CONNECTD;
@@ -498,9 +499,14 @@ static void os_state_indicate(void) {
         SET_LED_ON(SCROLL_LOCK_INDEX);
     }
 #    endif
-#    if defined(TAGGLE_LAYER_INDEX)
-    if (g_layer_led_on) {
-        SET_LED_ON(TAGGLE_LAYER_INDEX);
+#    if defined(TAGGLE_LAYER1_INDEX)
+    if (g_layer1_led_on) {
+        SET_LED_ON(TAGGLE_LAYER1_INDEX);
+    }
+#    endif
+#    if defined(TAGGLE_LAYER4_INDEX)
+    if (g_layer4_led_on) {
+        SET_LED_ON(TAGGLE_LAYER4_INDEX);
     }
 #    endif
 #    if defined(COMPOSE_LOCK_INDEX)
@@ -595,8 +601,11 @@ bool LED_DRIVER_ALLOW_SHUTDOWN(void) {
 #        if defined(SCROLL_LOCK_INDEX)
     if (host_keyboard_led_state().scroll_lock) return false;
 #        endif
-#        if defined(TAGGLE_LAYER_INDEX)
-    if (g_layer_led_on) return false;
+#        if defined(TAGGLE_LAYER1_INDEX)
+    if (g_layer1_led_on) return false;
+#        endif
+#        if defined(TAGGLE_LAYER4_INDEX)
+    if (g_layer4_led_on) return false;
 #        endif
 #        if defined(COMPOSE_LOCK_INDEX)
     if (host_keyboard_led_state().compose) return false;

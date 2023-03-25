@@ -54,3 +54,4 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,            _______,  KC_HOME,  KC_CAPS,  KC_END,   BAT_LVL,  _______,  KC_DOWN,  KC_PGUP,  KC_PGDN,  KC_DEL,              _______,            _______,            KC_MS_WH_LEFT,KC_MS_DOWN,KC_MS_WH_RIGHT,  _______,
         _______,  _______,  _______,                                _______,                                _______,  _______,   _______,    _______,  _______,  _______,  _______,  KC_MS_BTN2,            KC_MS_BTN3   )
 };
+
