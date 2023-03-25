@@ -41,8 +41,10 @@ enum {
   TD_F1_WDS,
   TD_F2_WDP,
 };
-#define qk_tap_dance_state_t tap_dance_state_t
-#define qk_tap_dance_action_t tap_dance_action_t
+#if(VIA_PROTOCOL_VERSION >= 0x000C)
+#   define qk_tap_dance_state_t tap_dance_state_t
+#   define qk_tap_dance_action_t tap_dance_action_t
+#endif
 // Declare the functions to be used with your tap dance key(s)
 // Function associated with all tap dances
 uint8_t cur_dance(qk_tap_dance_state_t *state);
@@ -120,7 +122,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,  BT_HST1,  BT_HST2,  BT_HST3,  NK_TOGG,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    _______,  RGB_VAI,  RGB_HUI,  RGB_SAI,  KC_ESC,  TDSLSWS,  TDPSTWP,  KC_BSPC,
         RGB_TOG,  _______,  KC_PGUP,  KC_UP,    KC_PGDN,  _______,  _______,  KC_PGUP,  KC_UP,    KC_PGDN,  _______,  _______,  _______,    _______,  RGB_VAD,  RGB_HUD,  RGB_SAD,  KC_MS_WH_UP,KC_MS_UP,KC_MS_WH_DOWN,  _______,
         _______,  KC_ENT,   KC_LEFT,  KC_DOWN,  KC_RGHT,  KC_BSPC,  KC_BSPC,  KC_LEFT,  KC_DOWN,  KC_RGHT,  _______,  _______,              _______,                                KC_MS_LEFT,KC_MS_BTN1,KC_MS_RIGHT,
-        _______,             KC_ESC,  KC_HOME,   KC_DEL,   KC_END,  BAT_LVL,  _______,  KC_HOME,  KC_DEL,    KC_END,  _______,              _______,            _______,            KC_MS_WH_LEFT,KC_MS_DOWN,KC_MS_WH_RIGHT,  _______,
+        _______,             KC_ESC,  KC_HOME,   KC_DEL,   KC_END,  BAT_LVL,   KC_ESC,  KC_HOME,  KC_DEL,    KC_END,  _______,              _______,            _______,            KC_MS_WH_LEFT,KC_MS_DOWN,KC_MS_WH_RIGHT,  _______,
         _______,  _______,  _______,                                _______,                                _______,  _______,  _______,    _______,  _______,  _______,  _______,  KC_MS_BTN2,            KC_MS_BTN3   ),
     [GAME_BASE] = LAYOUT_ansi_108(
         KC_ESC,          TDF1WDS,  TDF2WDP,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,      KC_F10,  KC_F11,     KC_F12,   KC_PSCR,  KC_SCRL,  KC_PAUS,  KC_MUTE,  KC_VOLD,  KC_VOLU,  TDETGL4,
@@ -134,14 +136,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,  BT_HST1,  BT_HST2,  BT_HST3,  NK_TOGG,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    _______,  RGB_VAI,  RGB_HUI,  RGB_SAI,  KC_ESC,  TDSLSWS,  TDPSTWP,  KC_BSPC,
         RGB_TOG,  _______,  KC_PGUP,  KC_UP,    KC_PGDN,  _______,  _______,  KC_PGUP,  KC_UP,    KC_PGDN,  _______,  _______,  _______,    _______,  RGB_VAD,  RGB_HUD,  RGB_SAD,  KC_MS_WH_UP,KC_MS_UP,KC_MS_WH_DOWN,  _______,
         _______,  KC_ENT,   KC_LEFT,  KC_DOWN,  KC_RGHT,  KC_BSPC,  KC_BSPC,  KC_LEFT,  KC_DOWN,  KC_RGHT,  _______,  _______,              _______,                                KC_MS_LEFT,KC_MS_BTN1,KC_MS_RIGHT,
-        _______,             KC_ESC,  KC_HOME,   KC_DEL,   KC_END,  BAT_LVL,  _______,  KC_HOME,  KC_DEL,    KC_END,  _______,              _______,            _______,            KC_MS_WH_LEFT,KC_MS_DOWN,KC_MS_WH_RIGHT,  _______,
+        _______,             KC_ESC,  KC_HOME,   KC_DEL,   KC_END,  BAT_LVL,   KC_ESC,  KC_HOME,  KC_DEL,    KC_END,  _______,              _______,            _______,            KC_MS_WH_LEFT,KC_MS_DOWN,KC_MS_WH_RIGHT,  _______,
         _______,  _______,  _______,                                _______,                               _______,  _______,   _______,    _______,  _______,  _______,  _______,  KC_MS_BTN2,            KC_MS_BTN3   ),
     [L4] = LAYOUT_ansi_108(
         _______,            _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    _______, RGB_TOG, RGB_RMOD, RGB_MOD,  KC_MPLY,  KC_MPRV,  KC_MNXT,  _______,
         _______,  _______,    KC_P7,    KC_P8,    KC_P9,  KC_PAST,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    _______,  RGB_VAI,  RGB_HUI,  RGB_SAI,  KC_ESC,  TDSLSWS,  TDPSTWP,  KC_BSPC,
         _______,  _______,    KC_P4,    KC_P5,    KC_P6,  KC_PMNS,  KC_PSLS,    KC_P4,    KC_P5,    KC_P6,  _______,  _______,  _______,    _______,  RGB_VAD,  RGB_HUD,  RGB_SAD,  KC_MS_WH_UP,KC_MS_UP,KC_MS_WH_DOWN,  _______,
         _______,  _______,    KC_P1,    KC_P2,    KC_P3,  KC_PPLS,  KC_BSPC,    KC_P1,    KC_P2,    KC_P3,  _______,  _______,              _______,                                KC_MS_LEFT,KC_MS_BTN1,KC_MS_RIGHT,
-        _______,             KC_ESC,    KC_P0,  KC_PDOT,   KC_EQL,  KC_PENT,  _______,    KC_P0,  _______,  _______,  _______,              _______,            _______,             KC_MS_WH_LEFT,KC_MS_DOWN,KC_MS_WH_RIGHT,  _______,
+        _______,             KC_ESC,    KC_P0,  KC_PDOT,   KC_EQL,  KC_PENT,   KC_ESC,    KC_P0,  _______,  _______,  _______,              _______,            _______,             KC_MS_WH_LEFT,KC_MS_DOWN,KC_MS_WH_RIGHT,  _______,
         _______,  _______,  _______,                                _______,                               _______,  _______,   _______,    _______,  _______,  _______,  _______,  KC_MS_BTN2,            KC_MS_BTN3   ),
     [L5] = LAYOUT_ansi_108(
         _______,            _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    _______, _______,  _______,  _______,  _______,  _______,  _______,  _______,
