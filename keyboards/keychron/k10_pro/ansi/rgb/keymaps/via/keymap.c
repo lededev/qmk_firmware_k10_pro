@@ -59,6 +59,7 @@ typedef enum {
     TD_TRIPLE_HOLD
 } td_state_t;
 
+#define SPACE_TERM 160
 typedef struct {
     bool is_press_action;
     td_state_t state;
@@ -104,7 +105,8 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define TDPSTWP TD(TD_PST_WDP)
 #define TDF1WDS TD(TD_F1_WDS)
 #define TDF2WDP TD(TD_F2_WDP)
-#define TDSPCFN TD(TD_SPC_FN)
+//#define TDSPCFN TD(TD_SPC_FN)
+#define TDSPCFN LT(OFFICE_FN, KC_SPACE)
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
@@ -112,8 +114,6 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         return 160;
     case TDETGL4:
         return 195;
-    case LT(L4, KC_ESC):
-        return 2000;
     case TDNUMEQ:
         return 195;
     case TDMNSBK:
@@ -131,10 +131,28 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     case TDF2WDP:
         return 190;
     case TDSPCFN:
-        return 180;
+        return SPACE_TERM;
     default:
       return TAPPING_TERM;
   }
+}
+
+uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case TDSPCFN:
+            return SPACE_TERM;
+        default:
+            return QUICK_TAP_TERM;
+    }
+}
+
+bool get_retro_tapping(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case TDSPCFN:
+            return true;
+        default:
+            return false;
+    }
 }
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -169,9 +187,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [L4] = LAYOUT_ansi_108(
         _______,            _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    _______, RGB_TOG, RGB_RMOD, RGB_MOD,  KC_MPLY,  KC_MPRV,  KC_MNXT,  _______,
         _______,  _______,    KC_P7,    KC_P8,    KC_P9,  KC_PAST,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    _______,  RGB_VAI,  RGB_HUI,  RGB_SAI,  KC_ESC,  TDSLSWS,  TDPSTWP,  KC_BSPC,
-        _______,  KC_PSLS,    KC_P4,    KC_P5,    KC_P6,  KC_PMNS,  KC_PSLS,    KC_P4,    KC_P5,    KC_P6,  _______,  _______,  _______,    _______,  RGB_VAD,  RGB_HUD,  RGB_SAD,  KC_MS_WH_UP,KC_MS_UP,KC_MS_WH_DOWN,  _______,
-        _______,  KC_PENT,    KC_P1,    KC_P2,    KC_P3,  KC_PPLS,  KC_BSPC,    KC_P1,    KC_P2,    KC_P3,  _______,  _______,              _______,                                KC_MS_LEFT,KC_MS_BTN1,KC_MS_RIGHT,
-        _______,             KC_ESC,    KC_P0,  KC_PDOT,   KC_EQL,  _______,   KC_ESC,    KC_P0,  _______,  _______,  _______,              _______,            _______,             KC_MS_WH_LEFT,KC_MS_DOWN,KC_MS_WH_RIGHT,  _______,
+        RGB_TOG,  KC_PSLS,    KC_P4,    KC_P5,    KC_P6,  KC_PMNS,  KC_PSLS,    KC_P4,    KC_P5,    KC_P6,  _______,  _______,  _______,    _______,  RGB_VAD,  RGB_HUD,  RGB_SAD,  KC_MS_WH_UP,KC_MS_UP,KC_MS_WH_DOWN,  _______,
+        _______,  KC_ENT,     KC_P1,    KC_P2,    KC_P3,  KC_PPLS,  KC_BSPC,    KC_P1,    KC_P2,    KC_P3,  _______,  _______,              _______,                                KC_MS_LEFT,KC_MS_BTN1,KC_MS_RIGHT,
+        _______,             KC_EQL,    KC_P0,  KC_COMM,   KC_DOT,  _______,   KC_ESC,    KC_P0,  _______,  _______,  _______,              _______,            _______,             KC_MS_WH_LEFT,KC_MS_DOWN,KC_MS_WH_RIGHT,  _______,
         _______,  _______,  _______,                                 KC_SPC,                               _______,  _______,   _______,    _______,  _______,  _______,  _______,  KC_MS_BTN2,            KC_MS_BTN3   ),
     [L5] = LAYOUT_ansi_108(
         KC_ESC,          TDF1WDS,  TDF2WDP,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,      KC_F10,  KC_F11,     KC_F12,   KC_PSCR,  KC_SCRL,  KC_PAUS,  KC_MUTE,  KC_VOLD,  KC_VOLU,  TG(L5),
@@ -263,7 +281,6 @@ void updateLED5(bool b) {
 void ql_finished(qk_tap_dance_state_t *state, void *user_data) {
     int tkeycode = TAP_DANCE_KEYCODE(state);
     ql_tap_state.state = cur_dance(state);
-    int Fn = GAME_FN;
     switch(tkeycode) {
         case TDETGL4:
         case TDGRVL5:
@@ -338,7 +355,6 @@ void ql_finished(qk_tap_dance_state_t *state, void *user_data) {
             }
             break;
         case TDCAPFO:
-            Fn = OFFICE_FN;
         case TDCAPFG:
             switch (ql_tap_state.state) {
                 case SINGLE_TAP:
@@ -349,20 +365,20 @@ void ql_finished(qk_tap_dance_state_t *state, void *user_data) {
                     break;
                 case TAP_HOLD:
                     // temporal layer change
-                    layer_on(Fn);
-                    updateLED1(true);
+                    layer_on(L4);
+                    updateLED4(true);
                     break;
                 case TRIPLE_TAP:
                     // toggle layer
                     // Check to see if the layer is already set
-                    if (layer_state_is(Fn)) {
+                    if (layer_state_is(L4)) {
                         // If already set, then switch it off
-                        layer_off(Fn);
-                        updateLED1(false);
+                        layer_off(L4);
+                        updateLED4(false);
                     } else {
                         // If not already set, then switch the layer on
-                        layer_on(Fn);
-                        updateLED1(true);
+                        layer_on(L4);
+                        updateLED4(true);
                     }
                     break;
             }
@@ -410,7 +426,6 @@ void ql_finished(qk_tap_dance_state_t *state, void *user_data) {
 }
 
 void ql_reset(qk_tap_dance_state_t *state, void *user_data) {
-    int Fn = GAME_FN;
     int tkeycode = TAP_DANCE_KEYCODE(state);
     switch(tkeycode) {
         case TDETGL4:
@@ -450,11 +465,10 @@ void ql_reset(qk_tap_dance_state_t *state, void *user_data) {
             }
             break;
         case TDCAPFO:
-            Fn = OFFICE_FN;
         case TDCAPFG:
             if (ql_tap_state.state == TAP_HOLD) {
-                layer_off(Fn);
-                updateLED1(false);
+                layer_off(L4);
+                updateLED4(false);
             }
             break;
         case TDSLSWS:

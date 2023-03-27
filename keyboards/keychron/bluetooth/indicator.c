@@ -503,11 +503,30 @@ static void os_state_indicate(void) {
 #    if defined(TAGGLE_LAYER1_INDEX)
     if (g_layer1_led_on) {
         SET_LED_ON(TAGGLE_LAYER1_INDEX);
+#    if defined(SHOW_FN1_BASEKEY_LEDS)
+        static uint8_t L1LEDs[] = {
+                44,            49,
+            64, 65, 66,    69, 70, 71,
+        };
+        for (int i = 0; i < sizeof(L1LEDs)/sizeof(L1LEDs[0]); i++) {
+            SET_LED_ON(L1LEDs[i]);
+        }
+#    endif
     }
 #    endif
 #    if defined(TAGGLE_LAYER4_INDEX)
     if (g_layer4_led_on) {
         SET_LED_ON(TAGGLE_LAYER4_INDEX);
+#        if defined(SHOW_LAYER4_NUM_LEDS)
+        static uint8_t L4LEDs[] = {
+            22, 23, 24,    27, 28, 29,
+            43, 44, 45,    48, 49, 50,
+            64, 65, 66,    69, 70, 71,
+        };
+        for (int i = 0; i < sizeof(L4LEDs)/sizeof(L4LEDs[0]); i++) {
+            SET_LED_ON(L4LEDs[i]);
+        }
+#        endif
     }
 #    endif
 #    if defined(TAGGLE_LAYER5_INDEX)
