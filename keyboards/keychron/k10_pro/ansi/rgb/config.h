@@ -16,6 +16,8 @@
 
 #pragma once
 
+#define DYNAMIC_MACRO_SIZE 256
+
 #ifdef RGB_MATRIX_ENABLE
 /* RGB Matrix driver configuration */
 #    define DRIVER_COUNT 2
