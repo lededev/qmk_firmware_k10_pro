@@ -113,3 +113,6 @@
 #define NEED_MORE_RGB_MATRIX_EFFECT
 //#define SHOW_LAYER4_NUM_LEDS
 //#define SHOW_FN1_BASEKEY_LEDS
+
+// Set USB polling rate to 1000 Hz
+#define USB_POLLING_INTERVAL_MS 1
