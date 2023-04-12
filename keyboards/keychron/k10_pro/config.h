@@ -116,3 +116,7 @@
 
 // Set USB polling rate to 1000 Hz
 #define USB_POLLING_INTERVAL_MS 1
+
+/* key combination for magic key command */
+#define KEYBOARD_LOCK_ENABLE
+#define MAGIC_KEY_LOCK L

@@ -176,6 +176,10 @@ void keyboard_post_init_kb(void) {
     writePin(H3, HOST_LED_PIN_ON_STATE);
 #    endif
 
+#    if defined(CONSOLE_ENABLE) && defined(COMMAND_ENABLE)
+    //debug_enable=true;
+#    endif
+
     keyboard_post_init_user();
 }
 
