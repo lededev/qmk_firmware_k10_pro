@@ -283,23 +283,21 @@ static tap ql_tap_state = {
 extern bool g_layer1_led_on;
 extern bool g_layer4_led_on;
 extern bool g_layer5_led_on;
+extern led_t save_led_state;
 
 void updateLED1(bool b) {
     g_layer1_led_on = b;
-    led_t led_state = {};
-    led_update_user(led_state);
+    led_update_kb(save_led_state);
 }
 
 void updateLED4(bool b) {
     g_layer4_led_on = b;
-    led_t led_state = {};
-    led_update_user(led_state);
+    led_update_kb(save_led_state);
 }
 
 void updateLED5(bool b) {
     g_layer5_led_on = b;
-    led_t led_state = {};
-    led_update_user(led_state);
+    led_update_kb(save_led_state);
 }
 
 // Functions that control what our tap dance key does

@@ -596,8 +596,11 @@ bool LED_INDICATORS_KB(void) {
    return false;
 }
 
-bool led_update_kb(led_t led_state) {
-    bool res = led_update_user(led_state);
+led_t save_led_state = {};
+
+bool  led_update_kb(led_t led_state) {
+    save_led_state = led_state;
+    bool res       = led_update_user(led_state);
     if (res) {
         led_update_ports(led_state);
 
