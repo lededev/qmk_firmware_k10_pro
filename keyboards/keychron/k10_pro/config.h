@@ -34,7 +34,7 @@
 #define LED_DISABLE_WHEN_USB_SUSPENDED
 
 /* Set 0 if debouncing isn't needed */
-#define DEBOUNCE 5
+#define DEBOUNCE 12
 
 /* DIP switch for Office/Game switch */
 #define DIP_SWITCH_PINS \
