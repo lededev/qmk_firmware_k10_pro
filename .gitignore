@@ -25,6 +25,7 @@
 api_data/v1
 quantum/version.h
 *.bin
+!keyboards/keychron/*/firmware/*.bin
 *.eep
 *.hex
 *.qmk
@@ -67,6 +68,7 @@ CMakeLists.txt
 .vscode/launch.json
 .vscode/tasks.json
 .vscode/temp.sql
+.vscode/settings.json
 tags
 
 # Ignore image/font files
