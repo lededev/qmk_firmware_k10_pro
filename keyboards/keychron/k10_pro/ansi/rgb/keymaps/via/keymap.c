@@ -32,8 +32,9 @@ enum layers{
 
 //Tap Dance Declarations
 enum {
-  TD_NUMLK_EQL = 0,
-  TD_PMNS_BKPC,
+  TD_NUMLK_BKPC = 0,
+  TD_DOT_COLON,
+  TD_PMNS_EQL,
   TD_CAP_FNO,
   TD_CAP_FNG,
   TD_DEF_L4,
@@ -82,8 +83,8 @@ void ql_reset(qk_tap_dance_state_t *state, void *user_data);
 //Tap Dance Definitions
 qk_tap_dance_action_t tap_dance_actions[] = {
   //Tap once for Esc, twice for Caps Lock
-  [TD_NUMLK_EQL]  = ACTION_TAP_DANCE_DOUBLE(KC_NUM, KC_EQL),
-  [TD_PMNS_BKPC] = ACTION_TAP_DANCE_DOUBLE(KC_PMNS, KC_BSPC),
+  [TD_NUMLK_BKPC]  = ACTION_TAP_DANCE_DOUBLE(KC_NUM, KC_BSPC),
+  [TD_PMNS_EQL] = ACTION_TAP_DANCE_DOUBLE(KC_PMNS, KC_EQL),
   [TD_CAP_FNO] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ql_finished, ql_reset),
   [TD_CAP_FNG] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ql_finished, ql_reset),
   [TD_DEF_L4] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ql_finished, ql_reset),
@@ -93,12 +94,14 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_PST_WDP] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ql_finished, ql_reset),
   [TD_F1_WDS] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ql_finished, ql_reset),
   [TD_F2_WDP] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ql_finished, ql_reset),
+  [TD_DOT_COLON]  = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ql_finished, ql_reset),
   [TD_FN14_APP0] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, x_finished, x_reset),
   [TD_FN14_APP1] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, x_finished, x_reset),
 };
 
-#define TDNUMEQ TD(TD_NUMLK_EQL)
-#define TDMNSBK TD(TD_PMNS_BKPC)
+#define TDNUMEQ TD(TD_NUMLK_BKPC)
+#define TDDOTCOLON TD(TD_DOT_COLON)
+#define TDMNSBK TD(TD_PMNS_EQL)
 #define TDCAPFO TD(TD_CAP_FNO)
 #define TDCAPFG TD(TD_CAP_FNG)
 #define TDETGL4 TD(TD_DEF_L4)
@@ -117,6 +120,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     case TDETGL4:
         return 195;
     case TDNUMEQ:
+    case TDDOTCOLON:
         return 195;
     case TDMNSBK:
         return 195;
@@ -167,7 +171,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          KC_TAB,  KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,    KC_BSLS,  KC_DEL,   KC_END,   KC_PGDN,  KC_P7,    KC_P8,    KC_P9,    KC_PPLS,
         TDCAPFO,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,LT(L4,KC_SCLN),KC_QUOT,              KC_ENT,                                 KC_P4,    KC_P5,    KC_P6,
         KC_LSFT,            KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,              KC_RSFT,            KC_UP,              KC_P1,    KC_P2,    KC_P3,    KC_PENT,
-        KC_LCTL,  KC_LWIN,  KC_LALT,                              TDSPCFN,                        KC_RALT,  KC_RWIN,  TDFNAPO,              KC_RCTL,  KC_LEFT,  KC_DOWN,  KC_RGHT,  KC_P0,              KC_PDOT         ),
+        KC_LCTL,  KC_LWIN,  KC_LALT,                              TDSPCFN,                        KC_RALT,  KC_RWIN,  TDFNAPO,              KC_RCTL,  KC_LEFT,  KC_DOWN,  KC_RGHT,  KC_P0,              TDDOTCOLON      ),
     [OFFICE_FN] = LAYOUT_ansi_108(
         _______,            DM_PLY1,  DM_PLY2,  KC_TASK,  KC_FILE,  RGB_VAD,  RGB_VAI,  KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_MUTE,  KC_VOLD,    KC_VOLU,  RGB_TOG, RGB_RMOD,  RGB_MOD,  KC_MPLY, KC_MPRV,  KC_MNXT,  KC_NOTE3,
         _______,  BT_HST1,  BT_HST2,  BT_HST3,  NK_TOGG,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    _______,  RGB_VAI,  RGB_HUI,  RGB_SAI,  KC_ESC,  TDSLSWS,  _______,  KC_BSPC,
@@ -424,6 +428,18 @@ void ql_finished(qk_tap_dance_state_t *state, void *user_data) {
                     break;
             }
             break;
+        case TDDOTCOLON:
+            switch (ql_tap_state.state) {
+                case SINGLE_TAP:
+                    register_code(KC_PDOT);
+                    break;
+                case DOUBLE_TAP:
+                case TRIPLE_TAP:
+                    register_code(KC_LSFT);
+                    register_code(KC_SCLN);
+                    break;
+            }
+            break;
     }
 }
 
@@ -501,6 +517,18 @@ void ql_reset(qk_tap_dance_state_t *state, void *user_data) {
                         unregister_code(KC_LWIN);
                         unregister_code(KC_RGHT);
                     }
+                    break;
+            }
+            break;
+        case TDDOTCOLON:
+            switch (ql_tap_state.state) {
+                case SINGLE_TAP:
+                    unregister_code(KC_PDOT);
+                    break;
+                case DOUBLE_TAP:
+                case TRIPLE_TAP:
+                    unregister_code(KC_SCLN);
+                    unregister_code(KC_LSFT);
                     break;
             }
             break;
