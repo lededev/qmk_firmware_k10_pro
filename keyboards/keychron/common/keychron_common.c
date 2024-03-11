@@ -33,7 +33,13 @@ uint32_t siri_timer     = 0;
 
 static uint8_t mac_keycode[4] = {KC_LOPT, KC_ROPT, KC_LCMD, KC_RCMD};
 
-static key_combination_t key_comb_list[4] = {{2, {KC_LWIN, KC_TAB}}, {2, {KC_LWIN, KC_E}}, {3, {KC_LSFT, KC_LCMD, KC_4}}, {2, {KC_LWIN, KC_C}}};
+static key_combination_t key_comb_list[5] = {
+     {2, {KC_LWIN, KC_TAB}},        // Task (win)
+     {2, {KC_LWIN, KC_E}},          // Files (win)
+     {3, {KC_LSFT, KC_LGUI, KC_4}}, // Snapshot (mac)
+     {2, {KC_LWIN, KC_C}},          // Cortana (win)
+     {3, {KC_LCTL, KC_LALT, KC_N}}  // NotepadEE (win) Ctrl+Alt+N
+ };
 
 bool process_record_keychron_common(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
@@ -77,6 +83,7 @@ bool process_record_keychron_common(uint16_t keycode, keyrecord_t *record) {
         case KC_FILE:
         case KC_SNAP:
         case KC_CTANA:
+        case KC_NOTEPADEE:
             if (record->event.pressed) {
                 for (uint8_t i = 0; i < key_comb_list[keycode - KC_TASK].len; i++) {
                     register_code(key_comb_list[keycode - KC_TASK].keycode[i]);

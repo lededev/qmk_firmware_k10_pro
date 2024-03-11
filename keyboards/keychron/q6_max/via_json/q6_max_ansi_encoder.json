@@ -75,6 +75,7 @@
       {"name": "File Explorer", "title": "File Explorer in Windows", "shortName": "File"},
       {"name": "Screen shot", "title": "Screenshot in macOS", "shortName": "SShot"},
       {"name": "Cortana", "title": "Cortana in Windows", "shortName": "Cortana"},
+      {"name": "NotepadEE", "title": "Notepad Extend Evaluation", "shortName": "NotepadEE"},
       {"name": "Siri", "title": "Siri in macOS", "shortName": "Siri"},
       {"name": "Bluetooth Host 1", "title": "Bluetooth Host 1", "shortName": "BTH1"},
       {"name": "Bluetooth Host 2", "title": "Bluetooth Host 2", "shortName": "BTH2"},

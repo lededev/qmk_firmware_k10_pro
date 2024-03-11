@@ -158,6 +158,9 @@ bool process_record_factory_test(uint16_t keycode, keyrecord_t *record) {
 #    if defined(FN_KEY_3)
         case FN_KEY_3:
 #    endif
+#endif
+        case KC_SPC:
+        case KC_APP:
             if (record->event.pressed) {
                 factory_reset_state |= KEY_PRESS_FN;
             } else {
@@ -165,7 +168,7 @@ bool process_record_factory_test(uint16_t keycode, keyrecord_t *record) {
                 factory_reset_timer = 0;
             }
             break;
-#endif
+
         case KC_J:
             if (record->event.pressed) {
                 factory_reset_state |= KEY_PRESS_J;

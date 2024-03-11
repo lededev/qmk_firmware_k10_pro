@@ -30,6 +30,7 @@ enum {
     KC_FILE_EXPLORER,
     KC_SCREEN_SHOT,
     KC_CORTANA,
+    KC_NOTEPADEE,
     KC_SIRI,
 #ifdef LK_WIRELESS_ENABLE
     BT_HST1,

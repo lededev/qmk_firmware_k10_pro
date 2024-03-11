@@ -27,6 +27,10 @@
 #    include "battery.h"
 #endif
 
+bool     g_layer1_led_on = false;
+bool     g_layer4_led_on = false;
+bool     g_layer5_led_on = false;
+
 #define POWER_ON_LED_DURATION 3000
 static uint32_t power_on_indicator_timer;
 
@@ -40,6 +44,13 @@ bool dip_switch_update_kb(uint8_t index, bool active) {
     return true;
 }
 #endif
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    g_layer1_led_on = layer_state_cmp(state, 1) || layer_state_cmp(state, 3);
+    g_layer4_led_on = layer_state_cmp(state, 4);
+    g_layer5_led_on = layer_state_cmp(state, 5);
+    return state;
+}
 
 void keyboard_post_init_kb(void) {
 #ifdef LK_WIRELESS_ENABLE
@@ -55,6 +66,10 @@ void keyboard_post_init_kb(void) {
     power_on_indicator_timer = timer_read32();
 #ifdef ENCODER_ENABLE
     encoder_cb_init();
+#endif
+
+#if defined(CONSOLE_ENABLE) && defined(COMMAND_ENABLE)
+    //debug_enable=true;
 #endif
 
     keyboard_post_init_user();

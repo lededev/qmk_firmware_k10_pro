@@ -61,6 +61,11 @@ enum {
     BACKLIGHT_ON_UNCONNECTED = 0x02,
 };
 
+extern bool            g_layer1_led_on;
+extern bool            g_layer4_led_on;
+extern bool            g_layer5_led_on;
+led_t save_led_state = {};
+
 static indicator_config_t pairing_config      = INDICATOR_CONFIG_PARING;
 static indicator_config_t connected_config    = INDICATOR_CONFIG_CONNECTD;
 static indicator_config_t reconnecting_config = INDICATOR_CONFIG_RECONNECTING;
@@ -592,6 +597,45 @@ __attribute__((weak)) void os_state_indicate(void) {
         SET_LED_ON(KANA_LOCK_INDEX);
     }
 #    endif
+#    if defined(TAGGLE_LAYER1_INDEX)
+    if (g_layer1_led_on) {
+        SET_LED_ON(TAGGLE_LAYER1_INDEX);
+#    if defined(SHOW_FN1_BASEKEY_LEDS)
+        static uint8_t L1LEDs[] = {
+                42,            47,
+            61, 62, 63,    66, 67, 68,
+        };
+        if (usb_power_connected()) {
+            for (int i = 0; i < sizeof(L1LEDs)/sizeof(L1LEDs[0]); i++) {
+                SET_LED_ON(L1LEDs[i]);
+            }
+        }
+#    endif
+    }
+#    endif
+#    if defined(TAGGLE_LAYER4_INDEX)
+    if (g_layer4_led_on) {
+        SET_LED_ON(TAGGLE_LAYER4_INDEX);
+#        if defined(SHOW_LAYER4_NUM_LEDS)
+        static uint8_t L4LEDs[] = {
+            21, 22, 23,    26, 27, 28,
+            41, 42, 43,    46, 47, 48,
+            61, 62, 63,    66, 67, 68,
+        };
+        if (usb_power_connected()) {
+            for (int i = 0; i < sizeof(L4LEDs)/sizeof(L4LEDs[0]); i++) {
+                SET_LED_ON(L4LEDs[i]);
+            }
+        }
+#        endif
+    }
+#    endif
+#    if defined(TAGGLE_LAYER5_INDEX)
+    if (g_layer5_led_on) {
+        SET_LED_ON(TAGGLE_LAYER5_INDEX);
+    }
+#    endif
+
 }
 
 bool LED_INDICATORS_KB(void) {
@@ -665,6 +709,7 @@ bool LED_INDICATORS_KB(void) {
 }
 
 bool led_update_kb(led_t led_state) {
+    save_led_state = led_state;
     bool res = led_update_user(led_state);
     if (res) {
         led_update_ports(led_state);

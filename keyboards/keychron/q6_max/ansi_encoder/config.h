@@ -16,6 +16,10 @@
 
 #pragma once
 
+#ifdef DYNAMIC_MACRO_ENABLE
+#    define DYNAMIC_MACRO_SIZE 128
+#endif
+
 #ifdef RGB_MATRIX_ENABLE
 /* RGB Matrix driver configuration */
 #    define DRIVER_COUNT 2
@@ -45,6 +49,10 @@
 /* Indications */
 #    define NUM_LOCK_INDEX 36
 #    define CAPS_LOCK_INDEX 59
+#    define SCROLL_LOCK_INDEX 14
+#    define TAGGLE_LAYER1_INDEX 0
+#    define TAGGLE_LAYER4_INDEX 19
+#    define TAGGLE_LAYER5_INDEX 20
 #    define LOW_BAT_IND_INDEX \
         { 98 }
 
