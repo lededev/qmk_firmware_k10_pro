@@ -18,7 +18,8 @@
         "nkro" : true,
         "rgb_matrix": true,
         "raw" : true,
-        "send_string" : true
+        "send_string" : true,
+        "tap_dance" : true
     },
   "matrix_pins": {
         "cols": ["C6", "C7", "C8", "A13", "A14", "A15", "C10", "C11", "C13", "C14", "C15", "C0", "C1", "C2", "C3", "A0", "A1", "A2", "A3", "B10"],
@@ -40,8 +41,15 @@
         "driver": "snled27351_spi",
         "sleep": true,
         "animations": {
+            "alpha_mods": true,
             "band_spiral_val": true,
             "breathing": true,
+            "colorband_pinwheel_sat": true,
+            "colorband_pinwheel_val": true,
+            "colorband_sat": true,
+            "colorband_spiral_sat": true,
+            "colorband_spiral_val": true,
+            "colorband_val": true,
             "cycle_all": true,
             "cycle_left_right": true,
             "cycle_out_in": true,
@@ -51,27 +59,50 @@
             "cycle_up_down": true,
             "digital_rain": true,
             "dual_beacon": true,
+            "flower_blooming": true,
+            "gradient_left_right": true,
+            "gradient_up_down": true,
+            "hue_breathing": true,
+            "hue_pendulum": true,
+            "hue_wave": true,
             "jellybean_raindrops": true,
+            "pixel_flow": true,
+            "pixel_fractal": true,
             "pixel_rain": true,
             "rainbow_beacon": true,
             "rainbow_moving_chevron": true,
+            "rainbow_pinwheels": true,
+            "raindrops": true,
+            "riverflow": true,
+            "solid_color": true,
+            "solid_reactive": true,
+            "solid_reactive_cross": true,
+            "solid_reactive_multicross": true,
             "solid_reactive_multinexus": true,
             "solid_reactive_multiwide": true,
+            "solid_reactive_nexus": true,
             "solid_reactive_simple": true,
+            "solid_reactive_wide": true,
             "solid_splash": true,
+            "solid_multisplash": true,
             "splash": true,
-            "typing_heatmap": true
+            "starlight": true,
+            "starlight_dual_hue": true,
+            "starlight_dual_sat": true,
+            "typing_heatmap": true,
+            "wave_left_right": true,
+            "wave_up_down": true
         }
     },
     "eeprom": {
         "wear_leveling": {
             "driver": "embedded_flash",
-            "logical_size": 2048,
-            "backing_size": 4096
+            "logical_size": 4096,
+            "backing_size": 8192
         }
     },
     "build": {
         "debounce_type": "sym_eager_pk"
     },
-    "debounce": 20
+    "debounce": 12
 }
