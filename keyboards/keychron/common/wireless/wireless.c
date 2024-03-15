@@ -362,6 +362,13 @@ void wireless_send_keyboard(report_keyboard_t *report) {
 #endif
         }
     } else if (wireless_state != WT_RESET) {
+#ifndef DISABLE_REPORT_BUFFER
+        /* Buffer keypress before wireless connect */
+        report_buffer_t report_buffer;
+        report_buffer.type = REPORT_TYPE_KB;
+        memcpy(&report_buffer.keyboard, report, sizeof(report_keyboard_t));
+        report_buffer_enqueue(&report_buffer);
+#endif
         wireless_connect();
     }
 }
