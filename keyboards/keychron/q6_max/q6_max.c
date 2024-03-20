@@ -30,6 +30,8 @@
 bool     g_layer1_led_on = false;
 bool     g_layer4_led_on = false;
 bool     g_layer5_led_on = false;
+bool     g_layer6_led_on = false;
+bool     g_layer7_led_on = false;
 
 #define POWER_ON_LED_DURATION 3000
 static uint32_t power_on_indicator_timer;
@@ -49,6 +51,8 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     g_layer1_led_on = layer_state_cmp(state, 1) || layer_state_cmp(state, 3);
     g_layer4_led_on = layer_state_cmp(state, 4);
     g_layer5_led_on = layer_state_cmp(state, 5);
+    g_layer6_led_on = layer_state_cmp(state, 6);
+    g_layer7_led_on = layer_state_cmp(state, 7);
     return state;
 }
 

@@ -64,6 +64,8 @@ enum {
 extern bool            g_layer1_led_on;
 extern bool            g_layer4_led_on;
 extern bool            g_layer5_led_on;
+extern bool            g_layer6_led_on;
+extern bool            g_layer7_led_on;
 led_t save_led_state = {};
 
 static indicator_config_t pairing_config      = INDICATOR_CONFIG_PARING;
@@ -633,6 +635,16 @@ __attribute__((weak)) void os_state_indicate(void) {
 #    if defined(TAGGLE_LAYER5_INDEX)
     if (g_layer5_led_on) {
         SET_LED_ON(TAGGLE_LAYER5_INDEX);
+    }
+#    endif
+#    if defined(TAGGLE_LAYER6_INDEX)
+    if (g_layer6_led_on) {
+        SET_LED_ON(TAGGLE_LAYER6_INDEX);
+    }
+#    endif
+#    if defined(TAGGLE_LAYER7_INDEX)
+    if (g_layer7_led_on) {
+        SET_LED_ON(TAGGLE_LAYER7_INDEX);
     }
 #    endif
 

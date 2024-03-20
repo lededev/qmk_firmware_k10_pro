@@ -52,7 +52,9 @@
 #    define SCROLL_LOCK_INDEX 14
 #    define TAGGLE_LAYER1_INDEX 0
 #    define TAGGLE_LAYER4_INDEX 19
-#    define TAGGLE_LAYER5_INDEX 20
+#    define TAGGLE_LAYER5_INDEX 5
+#    define TAGGLE_LAYER6_INDEX 6
+#    define TAGGLE_LAYER7_INDEX 7
 #    define LOW_BAT_IND_INDEX \
         { 98 }
 
@@ -61,3 +63,5 @@
 #    define RGB_TRIGGER_ON_KEYDOWN
 
 #endif
+
+#define MIDI_BASIC
