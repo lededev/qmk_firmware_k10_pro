@@ -195,7 +195,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,  _______,    KC_P7,    KC_P8,    KC_P9,  KC_PAST,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    _______,    RGB_VAI,  RGB_HUI,  RGB_SAI,  _______,  _______,  _______,  _______,
         RGB_TOG,  KC_PSLS,    KC_P4,    KC_P5,    KC_P6,  KC_PMNS,  KC_PSLS,    KC_P4,    KC_P5,    KC_P6,  _______,  _______,  _______,    _______,    RGB_VAD,  RGB_HUD,  RGB_SAD,  KC_MS_WH_UP,KC_MS_UP,KC_MS_WH_DOWN,
         _______,  KC_ENT,     KC_P1,    KC_P2,    KC_P3,  KC_PPLS,  KC_BSPC,    KC_P1,    KC_P2,    KC_P3,  _______,  _______,              _______,                                  KC_MS_LEFT,KC_MS_BTN1,KC_MS_RIGHT,_______,
-        _______,             KC_EQL,    KC_P0,  KC_COMM,   KC_DOT,  _______,   KC_ESC,    KC_P0,  _______,  _______,  _______,              _______,              _______,            KC_MS_WH_LEFT,KC_MS_DOWN,KC_MS_WH_RIGHT,
+        _______,             KC_EQL,    KC_P0,  KC_COMM,   KC_DOT,  BAT_LVL,   KC_ESC,    KC_P0,  _______,  _______,  _______,              _______,              _______,            KC_MS_WH_LEFT,KC_MS_DOWN,KC_MS_WH_RIGHT,
         _______,  _______,  _______,                                 KC_SPC,                                _______,  _______,  _______,    _______,    _______,  _______,  _______,  KC_MS_BTN2,      KC_MS_BTN3,  _______),
     [L5] = LAYOUT_109_ansi(
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    _______,    _______,  _______,  _______,  _______,  _______,  _______,  TG(L5),
