@@ -191,7 +191,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,             KC_ESC,  KC_HOME,   KC_DEL,   KC_END,  BAT_LVL,   KC_ESC,  KC_HOME,  KC_DEL,    KC_END,  _______,              _______,              _______,            KC_MS_WH_LEFT,KC_MS_DOWN,KC_MS_WH_RIGHT,
         _______,  MO(L7),   _______,                                _______,                                _______,  _______,  _______,    _______,    _______,  _______,  _______,  KC_MS_BTN2,      KC_MS_BTN3,  _______),
     [L4] = LAYOUT_109_ansi(
-        _______,  DM_PLY1,  DM_PLY2,  DM_RSTP,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,LGUI(KC_PDOT),  RGB_TOG, RGB_RMOD,  RGB_MOD,  KC_MPLY,  KC_MPRV,  KC_MNXT,  _______,
+        _______,  DM_PLY1,  DM_PLY2,  DM_RSTP,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,      MO(5),  RGB_TOG, RGB_RMOD,  RGB_MOD,  KC_MPLY,  KC_MPRV,  KC_MNXT,  _______,
         _______,  _______,    KC_P7,    KC_P8,    KC_P9,  KC_PAST,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    _______,    RGB_VAI,  RGB_HUI,  RGB_SAI,  _______,  _______,  _______,  _______,
         RGB_TOG,  KC_PSLS,    KC_P4,    KC_P5,    KC_P6,  KC_PMNS,  KC_PSLS,    KC_P4,    KC_P5,    KC_P6,  _______,  _______,  _______,    _______,    RGB_VAD,  RGB_HUD,  RGB_SAD,  KC_MS_WH_UP,KC_MS_UP,KC_MS_WH_DOWN,
         _______,  KC_ENT,     KC_P1,    KC_P2,    KC_P3,  KC_PPLS,  KC_BSPC,    KC_P1,    KC_P2,    KC_P3,  _______,  _______,              _______,                                  KC_MS_LEFT,KC_MS_BTN1,KC_MS_RIGHT,_______,
@@ -228,7 +228,7 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
     [GAME_BASE] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [GAME_FN]   = {ENCODER_CCW_CW(LGUI(KC_P2), LGUI(KC_P3))},
     [L4]   = {ENCODER_CCW_CW(LGUI(KC_PDOT), LGUI(KC_P1))},
-    [L5] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+    [L5] = {ENCODER_CCW_CW(LGUI(KC_P4), LGUI(KC_P6))},
     [L6] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [L7] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
 };
