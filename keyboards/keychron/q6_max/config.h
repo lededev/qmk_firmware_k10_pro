@@ -69,6 +69,7 @@
 
 /* Enable bluetooth NKRO */
 #    define WIRELESS_NKRO_ENABLE
+#    define APDAPTIVE_NKRO_ENABLE
 
 /* Raw hid command for factory test and bluetooth DFU */
 #    define RAW_HID_CMD 0xAA ... 0xAB
